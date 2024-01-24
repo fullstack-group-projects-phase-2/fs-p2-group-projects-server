@@ -1,7 +1,7 @@
 const { User } = require("../models");
 const { generateToken, comparePassword } = require("../helpers");
 
-class User {
+class UserController {
   static async register(req, res, next) {
     try {
       const { name, email, password } = req.body;
@@ -89,4 +89,4 @@ class User {
   }
 }
 
-module.exports = User;
+module.exports = UserController;
