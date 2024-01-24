@@ -7,8 +7,9 @@ const authenticate = require("../middlewares/authentication");
 
 // Endpoint
 router.post("/register", userController.register);
-// router.post("/login", userController.login);
+router.post("/login", userController.login);
 
-// Protect
+// Secure
+router.get("/home", authenticate, userController.secure);
 
 module.exports = router;
