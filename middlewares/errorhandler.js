@@ -1,8 +1,9 @@
 function errorHandler(err, req, res, next) {
-  console.log(`Error: ${err.message}`);
+  console.log(err.name);
+  console.log(err);
 
-  let statusCode;
-  let message;
+  let statusCode = "500";
+  let message = "Internal Server Error";
 
   switch (err.name) {
     case "Unauthorized":
@@ -17,14 +18,9 @@ function errorHandler(err, req, res, next) {
       statusCode = 401;
       message = "Invalid Token - Malformed token";
       break;
-    default:
-      statusCode = 500;
-      message = "Internal Server Error";
   }
 
-  res.status(statusCode).json({
-    message,
-  });
+  res.status(statusCode).json({ message });
 }
 
 module.exports = errorHandler;

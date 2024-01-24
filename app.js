@@ -1,25 +1,23 @@
 require("dotenv").config();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 178ac9b2dc664f63a7764a5d425e6e2f6e659729
 const express = require("express");
 const app = express();
-const bodyParser = require("body-parser");
-const { User, Message } = require("./models");
+const port = 3000;
+const cors = require("cors");
+const router = require("./routes/main");
 const errorHandler = require("./middlewares/errorhandler");
 const port = process.env.port;
 
-// Routes path
-const userRoutes = require("./routes/userRoutes");
-const messageRoutes = require("./routes/messageRoutes");
+app.use(cors());
 
-// error handler
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.use(router);
 app.use(errorHandler);
-
-// Middlewares
-app.use(express.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-// Routes
-app.use("/user", userRoutes);
-app.use("/message", messageRoutes);
 
 app.listen(port, () => {
   console.clear();
