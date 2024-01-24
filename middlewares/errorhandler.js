@@ -1,5 +1,6 @@
 function errorHandler(err, req, res, next) {
-  console.log(`Error: ${err.message}`);
+  console.log(err.name);
+  console.log(err);
 
   let statusCode = "500";
   let message = "Internal Server Error";
@@ -19,9 +20,7 @@ function errorHandler(err, req, res, next) {
       break;
   }
 
-  res.status(statusCode).json({
-    message,
-  });
+  res.status(statusCode).json({ message });
 }
 
 module.exports = errorHandler;
