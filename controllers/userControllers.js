@@ -1,26 +1,22 @@
-const { User } = require("../models");
-const { generateToken, comparePassword } = require("../helpers");
+const { User } = require("../models/index");
+const { generateToken, comparePassword } = require("../helpers/index");
 
-class User {
+class UserController {
   static async register(req, res, next) {
     try {
-      const { name, email, password } = req.body;
+      const { fullName, email, password } = req.body;
       const newUser = await User.create({
-        name,
+        fullName,
         email,
         password,
       });
 
-      const token = generateToken({
-        id: newUser.id,
-        email: newUser.email,
-        password: newUser.password,
-      });
       res.status(201).json({
-        message: `your token: ${token}`,
+        id: newUser.id,
+        fullName: newUser.fullName,
+        email: newUser.email,
       });
     } catch (error) {
-      console.log(error.message);
       next(error);
     }
   }
@@ -38,11 +34,9 @@ class User {
         return res.status(401).json({ message: "Invalid email or password" });
       }
 
-      const token = generateToken({ id: user.id, email: user.email });
+      const access_token = generateToken({ id: user.id });
 
-      res.status(200).json({
-        message: `Login Succsess, your token: ${token}`,
-      });
+      res.status(200).json({ access_token });
     } catch (error) {
       console.log(error.message);
       next(error);
@@ -89,4 +83,4 @@ class User {
   }
 }
 
-module.exports = User;
+module.exports = UserController;

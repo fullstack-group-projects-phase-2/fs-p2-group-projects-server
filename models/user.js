@@ -1,5 +1,5 @@
 "use strict";
-const { hashPassword } = require("../helpers/bcrypt");
+const { hashPassword } = require("../helpers/index");
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -9,27 +9,35 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init(
     {
-      name: {
+      fullName: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notNull: {
-            msg: "Name is required.",
+            msg: "fullname is required.",
           },
           notEmpty: {
-            msg: "Name is required.",
+            msg: "fullname is required.",
           },
         },
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: {
+          args: true,
+          msg: "email must be unique. Email has been used.",
+        },
         validate: {
           notNull: {
             msg: "email is required.",
           },
           notEmpty: {
             msg: "email is required.",
+          },
+          isEmail: {
+            args: true,
+            msg: "email must be email format",
           },
         },
         unique: true,
@@ -39,10 +47,14 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notNull: {
-            msg: "Password is required.",
+            msg: "password is required.",
           },
           notEmpty: {
-            msg: "Password is required.",
+            msg: "password is required.",
+          },
+          len: {
+            args: [6, 20],
+            msg: "password must be more then 7 characters",
           },
         },
       },
@@ -50,10 +62,11 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "User",
-    },
-    User.beforeCreate(async (user) => {
-      user.password = await hashPassword(user.password);
-    })
+    }
   );
+  User.beforeCreate(async (el) => {
+    el.password = await hashPassword(el.password);
+  });
+
   return User;
 };
