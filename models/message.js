@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       MemberId: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
           notNull: {
