@@ -26,7 +26,7 @@ class UserController {
       const { email, password } = req.body;
       const user = await User.findOne({
         where: {
-          email,
+          email: email,
         },
       });
 
@@ -37,18 +37,6 @@ class UserController {
       const access_token = generateToken({ id: user.id });
 
       res.status(200).json({ access_token });
-    } catch (error) {
-      console.log(error.message);
-      next(error);
-    }
-  }
-
-  static async secure(req, res, next) {
-    try {
-      const user = req.user;
-      res.json({
-        message: `Account secure, success protect user: ${user}`,
-      });
     } catch (error) {
       console.log(error.message);
       next(error);
