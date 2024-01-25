@@ -1,9 +1,8 @@
+const { allMessage, addMessage } = require("../controllers/messageController");
+
 const router = require("express").Router();
-const messageController = require("../controllers/userControllers");
 
-// Endpoint
-
-// Authentication
-const authenticate = require("../middlewares/authentication");
+router.get("/", allMessage);
+router.get("/new-message", addMessage);
 
 module.exports = router;

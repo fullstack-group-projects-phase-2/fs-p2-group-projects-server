@@ -3,15 +3,21 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.addColumn("Messages", "MemberId", {
-      type: Sequelize.INTEGER,
-      references: {
-        model: "Members",
-        key: "id",
+    await queryInterface.addColumn(
+      "Messages",
+      "MemberId",
+      {
+        type: Sequelize.DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: {
+            tableName: "Members",
+          },
+          key: "id",
+        },
       },
-      onUpdate: "CASCADE",
-      onDelete: "SET NULL",
-    });
+      {}
+    );
   },
 
   async down(queryInterface, Sequelize) {

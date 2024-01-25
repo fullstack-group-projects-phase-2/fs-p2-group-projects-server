@@ -4,7 +4,7 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      User.hasOne(models.Member, { foreignKey: "UserId" });
+      User.hasMany(models.Member);
     }
   }
   User.init(
@@ -51,10 +51,6 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: {
             msg: "password is required.",
           },
-          len: {
-            args: [6, 20],
-            msg: "password must be more then 7 characters",
-          },
         },
       },
     },
@@ -63,8 +59,9 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "User",
     }
   );
-  User.beforeCreate(async (el) => {
-    el.password = await hashPassword(el.password);
+
+  User.beforeCreate((el) => {
+    el.password = hashPassword(el.password);
   });
 
   return User;

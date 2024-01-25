@@ -6,5 +6,6 @@ router.get("/", (req, res) => {
 
 router.use("/users", require("./userRoutes"));
 router.use("/messages", require("./messageRoutes"));
+router.use("/rooms", require("./room"));
 
 module.exports = router;

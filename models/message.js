@@ -3,7 +3,7 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Message extends Model {
     static associate(models) {
-      Message.hasMany(models.Member, { foreignKey: "MemberId" });
+      Message.belongsTo(models.Member);
     }
   }
 
@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       MemberId: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
           notNull: {

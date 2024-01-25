@@ -2,6 +2,16 @@ const { User } = require("../models/index");
 const { generateToken, comparePassword } = require("../helpers/index");
 
 class UserController {
+  static async allUser(req, res, next) {
+    try {
+      const users = await User.findAll();
+
+      res.status(200).json(users);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async register(req, res, next) {
     try {
       const { fullName, email, password } = req.body;
