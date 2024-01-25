@@ -20,13 +20,6 @@ module.exports = {
 
     await queryInterface.bulkInsert("Rooms", rooms, {});
 
-    const members = require("../data/member.json").map((el) => {
-      el.createdAt = el.updatedAt = new Date();
-      return el;
-    });
-
-    await queryInterface.bulkInsert("Members", members, {});
-
     const messages = require("../data/message.json").map((el) => {
       el.createdAt = el.updatedAt = new Date();
       return el;
@@ -42,11 +35,6 @@ module.exports = {
       restartIdentity: true,
     });
     await queryInterface.bulkDelete("Rooms", null, {
-      truncate: true,
-      cascade: true,
-      restartIdentity: true,
-    });
-    await queryInterface.bulkDelete("Members", null, {
       truncate: true,
       cascade: true,
       restartIdentity: true,

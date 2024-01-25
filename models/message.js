@@ -3,7 +3,8 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Message extends Model {
     static associate(models) {
-      Message.belongsTo(models.Member);
+      Message.belongsTo(models.Room);
+      Message.belongsTo(models.User);
     }
   }
 
@@ -21,15 +22,27 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
-      MemberId: {
+      UserId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
           notNull: {
-            msg: "memberId is required.",
+            msg: "user ID is required.",
           },
           notEmpty: {
-            msg: "memberId is required.",
+            msg: "user ID is required.",
+          },
+        },
+      },
+      RoomId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "room ID is required.",
+          },
+          notEmpty: {
+            msg: "room ID is required.",
           },
         },
       },

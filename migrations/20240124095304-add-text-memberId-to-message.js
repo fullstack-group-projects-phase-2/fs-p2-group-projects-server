@@ -2,25 +2,7 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.addColumn(
-      "Messages",
-      "MemberId",
-      {
-        type: Sequelize.DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: {
-            tableName: "Members",
-          },
-          key: "id",
-        },
-      },
-      {}
-    );
-  },
+  async up(queryInterface, Sequelize) {},
 
-  async down(queryInterface, Sequelize) {
-    await queryInterface.removeColumn("Messages", "MemberId");
-  },
+  async down(queryInterface, Sequelize) {},
 };

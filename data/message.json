@@ -1,14 +1,32 @@
 [
   {
     "text": "Hello Everyone!",
-    "MemberId": 1
+    "UserId": 1,
+    "RoomId": 1
   },
   {
     "text": "Hello Someone!",
-    "MemberId": 2
+    "UserId": 1,
+    "RoomId": 1
   },
   {
-    "text": "Hello AnyBody!",
-    "MemberId": 3
+    "text": "Hello Anyone!",
+    "UserId": 2,
+    "RoomId": 1
+  },
+  {
+    "text": "Hello One-one!",
+    "UserId": 1,
+    "RoomId": 1
+  },
+  {
+    "text": "Hello Onee-san!",
+    "UserId": 2,
+    "RoomId": 1
+  },
+  {
+    "text": "Hello One-chan!",
+    "UserId": 2,
+    "RoomId": 1
   }
 ]
