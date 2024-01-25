@@ -1,59 +1,22 @@
 "use strict";
-const { hashPassword } = require("../helpers/index");
 const { Model } = require("sequelize");
+const { hashPassword } = require("../helpers");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
     static associate(models) {
-      User.hasMany(models.Room);
-      User.hasMany(models.Message);
+      // define association here
     }
   }
   User.init(
     {
-      fullName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: "fullname is required.",
-          },
-          notEmpty: {
-            msg: "fullname is required.",
-          },
-        },
-      },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: {
-          args: true,
-          msg: "email must be unique. Email has been used.",
-        },
-        validate: {
-          notNull: {
-            msg: "email is required.",
-          },
-          notEmpty: {
-            msg: "email is required.",
-          },
-          isEmail: {
-            args: true,
-            msg: "email must be email format",
-          },
-        },
-      },
-      password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: "password is required.",
-          },
-          notEmpty: {
-            msg: "password is required.",
-          },
-        },
-      },
+      fullName: DataTypes.STRING,
+      email: DataTypes.STRING,
+      password: DataTypes.STRING,
     },
     {
       sequelize,
