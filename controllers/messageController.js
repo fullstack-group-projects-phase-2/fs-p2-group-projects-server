@@ -22,6 +22,10 @@ class MessageController {
       next(error);
     }
   }
+
+  static async createMessage(payload) {
+    Message.create(payload);
+  }
 }
 
 module.exports = MessageController;
