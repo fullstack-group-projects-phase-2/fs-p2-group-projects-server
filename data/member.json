@@ -1,0 +1,22 @@
+[
+  {
+    "UserId": 1,
+    "RoomId": 1
+  },
+  {
+    "UserId": 2,
+    "RoomId": 2
+  },
+  {
+    "UserId": 3,
+    "RoomId": 4
+  },
+  {
+    "UserId": 4,
+    "RoomId": 4
+  },
+  {
+    "UserId": 5,
+    "RoomId": 5
+  }
+]

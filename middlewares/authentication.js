@@ -21,7 +21,8 @@ async function authenticate(req, res, next) {
       throw { name: "InvalidToken" };
     }
 
-    req.user = user;
+    req.user = { id: user.id };
+
     next();
   } catch (error) {
     next(error);

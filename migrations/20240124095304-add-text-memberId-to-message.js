@@ -8,12 +8,13 @@ module.exports = {
       "MemberId",
       {
         type: Sequelize.DataTypes.INTEGER,
+        allowNull: false,
         references: {
-          model: "Members",
+          model: {
+            tableName: "Members",
+          },
           key: "id",
         },
-        onUpdate: "CASCADE",
-        onDelete: "SET NULL",
       },
       {}
     );
