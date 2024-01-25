@@ -1,0 +1,32 @@
+[
+  {
+    "text": "Hello Everyone!",
+    "UserId": 1,
+    "RoomId": 1
+  },
+  {
+    "text": "Hello Someone!",
+    "UserId": 1,
+    "RoomId": 1
+  },
+  {
+    "text": "Hello Anyone!",
+    "UserId": 2,
+    "RoomId": 1
+  },
+  {
+    "text": "Hello One-one!",
+    "UserId": 1,
+    "RoomId": 1
+  },
+  {
+    "text": "Hello Onee-san!",
+    "UserId": 2,
+    "RoomId": 1
+  },
+  {
+    "text": "Hello One-chan!",
+    "UserId": 2,
+    "RoomId": 1
+  }
+]
